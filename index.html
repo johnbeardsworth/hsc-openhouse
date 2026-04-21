@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>HSC Open House · April 23</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  :root {
+    --navy: #1a2744;
+    --gold: #c9a84c;
+    --gold-light: #f5e9c2;
+    --teal: #2a7f6f;
+    --teal-light: #d4ede8;
+    --slate: #4a5568;
+    --light: #f8f7f3;
+    --white: #ffffff;
+    --border: #e2ddd5;
+    --available: #2a7f6f;
+
+    --c-abbe:    #2a7f6f;
+    --c-redcross:#c0392b;
+    --c-asac:    #8e44ad;
+    --c-crush:   #1a6b8a;
+    --c-hillcrest:#c77d1a;
+    --c-legal:   #2c6e3f;
+    --c-jl:      #c0396b;
+    --c-lwv:     #3d5a9b;
+    --c-manna:   #7b3f00;
+    --c-ndl:     #1a7a8a;
+    --c-nb:      #5c3566;
+    --c-uweci:   #1a5276;
+    --c-vacant:  #888;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--light);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 32px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,168,76,.05) 30px,rgba(201,168,76,.05) 31px);
+  }
+  .hero-badge {
+    display:inline-block;
+    background: rgba(201,168,76,.2);
+    border: 1px solid rgba(201,168,76,.4);
+    color: var(--gold);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:5px 14px;
+    border-radius:2px;
+    margin-bottom:16px;
+  }
+  .hero h1 {
+    font-family:'Playfair Display',serif;
+    font-size:34px;
+    color:var(--white);
+    line-height:1.1;
+    margin-bottom:6px;
+  }
+  .hero h1 span { color:var(--gold); }
+  .hero-sub {
+    font-size:13px;
+    color:rgba(255,255,255,.6);
+    margin-bottom:20px;
+    font-style:italic;
+  }
+  .hero-details {
+    display:flex;
+    justify-content:center;
+    gap:24px;
+  }
+  .hero-detail-label {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:3px;
+  }
+  .hero-detail-value {
+    font-size:13px;
+    color:rgba(255,255,255,.85);
+    font-weight:300;
+  }
+
+  /* ── NAV TABS ── */
+  .tabs {
+    display:flex;
+    background:var(--white);
+    border-bottom:2px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  }
+  .tab {
+    flex:1;
+    padding:12px 4px;
+    text-align:center;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    color:var(--slate);
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    margin-bottom:-2px;
+    transition:all .2s;
+  }
+  .tab.active {
+    color:var(--navy);
+    border-bottom-color:var(--gold);
+  }
+  .tab-icon { font-size:16px; display:block; margin-bottom:2px; }
+
+  /* ── PANELS ── */
+  .panel { display:none; padding:0 0 80px; }
+  .panel.active { display:block; }
+
+  /* ── SECTION HEADERS ── */
+  .section-head {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:20px 16px 12px;
+  }
+  .floor-badge {
+    background:var(--navy);
+    color:var(--gold);
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    font-weight:700;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .section-head-text h3 {
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    color:var(--navy);
+  }
+  .section-head-text p {
+    font-size:11px;
+    color:var(--slate);
+    margin-top:1px;
+  }
+
+  /* ── SUITE CARDS ── */
+  .suite-list { padding:0 12px; }
+  .suite-card {
+    background:var(--white);
+    border-radius:10px;
+    margin-bottom:10px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .suite-card:active { transform:scale(.98); }
+  .suite-card-inner {
+    display:flex;
+    align-items:stretch;
+  }
+  .suite-color-bar {
+    width:5px;
+    flex-shrink:0;
+    border-radius:0;
+  }
+  .suite-card-body {
+    padding:12px 14px;
+    flex:1;
+  }
+  .suite-card-top {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:4px;
+  }
+  .suite-num {
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .suite-card-name {
+    font-size:15px;
+    font-weight:600;
+    color:var(--navy);
+    line-height:1.2;
+  }
+  .suite-card-desc {
+    font-size:12px;
+    color:var(--slate);
+    margin-top:5px;
+    line-height:1.5;
+    display:none;
+  }
+  .suite-card.expanded .suite-card-desc { display:block; }
+  .suite-card-arrow {
+    font-size:16px;
+    color:#bbb;
+    transition:transform .2s;
+    margin-left:8px;
+    flex-shrink:0;
+  }
+  .suite-card.expanded .suite-card-arrow { transform:rotate(180deg); }
+
+  /* vacant card */
+  .suite-card.vacant { opacity:.8; }
+  .suite-card.vacant .suite-card-name { color:var(--slate); font-weight:400; font-style:italic; }
+
+  /* available card */
+  .avail-badge {
+    display:inline-block;
+    background:#e8f5f2;
+    color:var(--teal);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:2px;
+  }
+
+  /* divider */
+  .floor-divider {
+    height:1px;
+    background:var(--border);
+    margin:8px 12px 16px;
+  }
+
+  /* ── DIRECTORY PANEL ── */
+  .dir-card {
+    background:var(--white);
+    border-radius:10px;
+    margin:0 12px 10px;
+    padding:14px 16px;
+    border:1px solid var(--border);
+    border-left:4px solid;
+    cursor:pointer;
+  }
+  .dir-card-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .dir-suite-tag {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:3px;
+  }
+  .dir-card h3 {
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    color:var(--navy);
+    line-height:1.2;
+    margin-bottom:0;
+    flex:1;
+  }
+  .dir-floor-pill {
+    background:var(--navy);
+    color:rgba(255,255,255,.7);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.5px;
+    padding:3px 8px;
+    border-radius:2px;
+    text-transform:uppercase;
+    margin-left:8px;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .dir-mission {
+    font-size:12px;
+    color:var(--slate);
+    line-height:1.6;
+    margin-top:8px;
+    display:none;
+  }
+  .dir-card.expanded .dir-mission { display:block; }
+  .dir-expand-hint {
+    font-size:10px;
+    color:#bbb;
+    margin-top:6px;
+  }
+  .dir-card.expanded .dir-expand-hint { display:none; }
+
+  /* ── LEASING PANEL ── */
+  .lease-section {
+    padding:20px 12px 0;
+  }
+  .lease-section h3 {
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    color:var(--navy);
+    margin-bottom:4px;
+  }
+  .lease-section-sub {
+    font-size:12px;
+    color:var(--slate);
+    margin-bottom:16px;
+  }
+
+  .lease-card {
+    background:var(--white);
+    border-radius:10px;
+    margin-bottom:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .lease-card-header {
+    padding:14px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .lease-suite-name {
+    font-size:16px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .lease-suite-floor {
+    font-size:11px;
+    color:var(--slate);
+    margin-top:2px;
+  }
+  .avail-tag {
+    background:var(--teal-light);
+    color:var(--teal);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.5px;
+    padding:4px 10px;
+    border-radius:4px;
+  }
+  .negotiable-tag {
+    background:#fef3e2;
+    color:#c77d1a;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.5px;
+    padding:4px 10px;
+    border-radius:4px;
+  }
+  .lease-stats {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--border);
+    border-top:1px solid var(--border);
+  }
+  .lease-stat {
+    background:var(--white);
+    padding:10px 14px;
+  }
+  .lease-stat-label {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:3px;
+  }
+  .lease-stat-value {
+    font-size:17px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .lease-stat-unit {
+    font-size:10px;
+    font-weight:400;
+    color:var(--slate);
+  }
+
+  /* combine callout */
+  .combine-box {
+    background: linear-gradient(135deg, #1a2744, #2a3f6a);
+    border-radius:10px;
+    margin:0 12px 20px;
+    padding:18px 20px;
+    color:white;
+  }
+  .combine-box-label {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .combine-box-title {
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    color:white;
+    margin-bottom:4px;
+  }
+  .combine-box-sub {
+    font-size:12px;
+    color:rgba(255,255,255,.6);
+    margin-bottom:14px;
+  }
+  .combine-stats {
+    display:flex;
+    gap:20px;
+  }
+  .combine-stat-label {
+    font-size:9px;
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .combine-stat-value {
+    font-size:18px;
+    font-weight:700;
+    color:white;
+  }
+  .combine-stat-unit { font-size:10px; color:rgba(255,255,255,.6); }
+
+  /* rate table */
+  .rate-card {
+    background:var(--white);
+    border-radius:10px;
+    margin:0 12px 20px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .rate-card-header {
+    background:var(--navy);
+    padding:12px 16px;
+  }
+  .rate-card-header h4 {
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    color:var(--white);
+  }
+  .rate-card-header p {
+    font-size:11px;
+    color:rgba(255,255,255,.5);
+    margin-top:2px;
+  }
+  .rate-row {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 16px;
+    border-bottom:1px solid var(--border);
+  }
+  .rate-row:last-child { border-bottom:none; }
+  .rate-row.best { background:#f8f7f3; }
+  .rate-term {
+    font-size:14px;
+    font-weight:600;
+    color:var(--navy);
+  }
+  .rate-value {
+    font-size:18px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .rate-value span { font-size:11px; font-weight:400; color:var(--slate); }
+  .rate-best-badge {
+    background:var(--gold-light);
+    color:#7a5c10;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:2px 7px;
+    border-radius:2px;
+    margin-left:8px;
+  }
+  .rate-note {
+    padding:10px 16px;
+    font-size:11px;
+    color:var(--slate);
+    border-top:1px solid var(--border);
+    background:#fafaf8;
+  }
+
+  /* contact card */
+  .contact-card {
+    background:var(--navy);
+    border-radius:10px;
+    margin:0 12px 20px;
+    padding:20px;
+    color:white;
+    text-align:center;
+  }
+  .contact-card h4 {
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    color:white;
+    margin-bottom:2px;
+  }
+  .contact-card-role {
+    font-size:12px;
+    color:rgba(255,255,255,.5);
+    margin-bottom:16px;
+  }
+  .contact-card-company {
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .contact-btn {
+    display:inline-block;
+    background:var(--gold);
+    color:var(--navy);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:10px 24px;
+    border-radius:4px;
+    text-decoration:none;
+    margin-top:4px;
+  }
+
+  /* ── BOTTOM NAV SPACER ── */
+  .spacer { height:40px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">Human Services Campus · Cedar Rapids, Iowa</div>
+  <h1>Community<br><span>Impact</span></h1>
+  <div class="hero-sub">Open House &amp; Networking Event</div>
+  <div class="hero-details">
+    <div>
+      <div class="hero-detail-label">Date</div>
+      <div class="hero-detail-value">Thursday, April 23</div>
+    </div>
+    <div>
+      <div class="hero-detail-label">Time</div>
+      <div class="hero-detail-value">4:00 – 6:00 PM</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('map')">
+    <span class="tab-icon">🗺</span>Map
+  </div>
+  <div class="tab" onclick="showTab('directory')">
+    <span class="tab-icon">📋</span>Directory
+  </div>
+  <div class="tab" onclick="showTab('leasing')">
+    <span class="tab-icon">🏢</span>Leasing
+  </div>
+</div>
+
+
+<!-- ══════ MAP PANEL ══════ -->
+<div id="panel-map" class="panel active">
+
+  <!-- FLOOR 2 -->
+  <div class="section-head">
+    <div class="floor-badge">2</div>
+    <div class="section-head-text">
+      <h3>Second Floor</h3>
+      <p>Suites 201 · 202 series · 203 · 205</p>
+    </div>
+  </div>
+  <div class="suite-list">
+
+    <div class="suite-card vacant" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-vacant)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 201 &nbsp;<span class="avail-badge">Available</span></div>
+              <div class="suite-card-name">Vacant — Former Girl Scouts</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Large open suite. 7,606 USF · 9,925 RSF. Ideal for a single anchor tenant or multi-office buildout. Contact leasing for a tour.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-hillcrest)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202.1</div>
+              <div class="suite-card-name">Hillcrest Family Services</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Behavioral health, child welfare, and family support services — meeting people where they are to build stronger, healthier lives. Also occupies Suite 301 on the 3rd floor.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-jl)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202D</div>
+              <div class="suite-card-name">Junior League of Cedar Rapids</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Promoting voluntarism, developing women's potential, and improving communities through effective action and civic engagement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-lwv)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202E</div>
+              <div class="suite-card-name">League of Women Voters</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Encouraging informed participation in government and advocating for policies that promote democracy and civic engagement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-manna)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202F</div>
+              <div class="suite-card-name">Manna Outreach and Resource</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Providing food assistance, basic needs resources, and community support to individuals and families facing hardship.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-ndl)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202G</div>
+              <div class="suite-card-name">Never Dream Less Foundation</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Empowering youth and young adults through mentorship, leadership development, and access to educational opportunities.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-nb)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 202H</div>
+              <div class="suite-card-name">New Beginnings (Nigel &amp; Tonya Adams)</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Providing pathways to stability and renewal for individuals seeking second chances through community-centered support and programming.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-asac)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 203</div>
+              <div class="suite-card-name">Area Substance Abuse Council</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Prevention, education, and treatment services addressing substance use and addiction in Linn County and surrounding communities.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-redcross)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 205</div>
+              <div class="suite-card-name">American National Red Cross</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Disaster relief, blood donation services, and emergency preparedness education for communities across the region.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card vacant" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:#bbb"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite TBD &nbsp;<span class="avail-badge" style="background:#eee;color:#888;">Pending</span></div>
+              <div class="suite-card-name">Abbe Center for Community Mental Health</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Comprehensive mental health services including therapy, crisis intervention, and community-based programs throughout Eastern Iowa. Suite assignment to be confirmed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floor-divider"></div>
+
+  <!-- FLOOR 3 -->
+  <div class="section-head">
+    <div class="floor-badge">3</div>
+    <div class="section-head-text">
+      <h3>Third Floor</h3>
+      <p>Suites 301 · 304</p>
+    </div>
+  </div>
+  <div class="suite-list">
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-hillcrest)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 301</div>
+              <div class="suite-card-name">Hillcrest Family Services</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Hillcrest's primary floor — large multi-office footprint including open offices, hallways, and dedicated workspace. Also has offices on Floor 2 (Suite 202.1).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-crush)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 304 &nbsp;<span class="negotiable-tag" style="font-size:9px; padding:2px 6px; border-radius:2px; background:#fef3e2; color:#c77d1a; font-weight:700; letter-spacing:.5px;">Negotiable</span></div>
+              <div class="suite-card-name">CRUSH of Iowa</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Community Resources United to Stop Heroin — connecting families and individuals to addiction resources and recovery support services across Iowa. Currently occupied; suite available for lease negotiation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floor-divider"></div>
+
+  <!-- FLOOR 4 -->
+  <div class="section-head">
+    <div class="floor-badge">4</div>
+    <div class="section-head-text">
+      <h3>Fourth Floor</h3>
+      <p>Suites 401 · 402 · 403 · 404</p>
+    </div>
+  </div>
+  <div class="suite-list">
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-uweci)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 401</div>
+              <div class="suite-card-name">UWECI</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">United Way of East Central Iowa — mobilizing community resources to advance education, income, health, and basic needs across the region.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card vacant" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-vacant)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suite 402 &nbsp;<span class="avail-badge">Available</span></div>
+              <div class="suite-card-name">Vacant — Available for Lease</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">2,152 USF · 2,808 RSF. Can be combined with Suite 401 if needed. See Leasing tab for rates.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suite-card" onclick="toggleCard(this)">
+      <div class="suite-card-inner">
+        <div class="suite-color-bar" style="background:var(--c-legal)"></div>
+        <div class="suite-card-body">
+          <div class="suite-card-top">
+            <div>
+              <div class="suite-num">Suites 403 &amp; 404</div>
+              <div class="suite-card-name">Iowa Legal Aid</div>
+            </div>
+            <div class="suite-card-arrow">⌄</div>
+          </div>
+          <div class="suite-card-desc">Free civil legal assistance to low-income Iowans, addressing housing, family, and public benefits issues that affect basic needs and stability.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div><!-- end map panel -->
+
+
+<!-- ══════ DIRECTORY PANEL ══════ -->
+<div id="panel-directory" class="panel">
+  <div style="padding:20px 12px 12px;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--navy); margin-bottom:4px;">Tenant Directory</h2>
+    <p style="font-size:12px; color:var(--slate);">Tap any organization to learn more.</p>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-hillcrest)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-hillcrest)">Suites 202.1 &amp; 301</div>
+        <h3>Hillcrest Family Services</h3>
+      </div>
+      <div class="dir-floor-pill">Floors 2 &amp; 3</div>
+    </div>
+    <div class="dir-mission">Behavioral health, child welfare, and family support services — meeting people where they are to build stronger, healthier lives. Hillcrest spans both the second and third floors, reflecting the breadth of their programs.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-crush)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-crush)">Suite 304</div>
+        <h3>CRUSH of Iowa</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 3</div>
+    </div>
+    <div class="dir-mission">Community Resources United to Stop Heroin — connecting families and individuals to addiction resources, recovery support, and community education services across Iowa.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-uweci)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-uweci)">Suite 401</div>
+        <h3>UWECI — United Way of East Central Iowa</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 4</div>
+    </div>
+    <div class="dir-mission">Mobilizing community resources to advance education, income stability, health, and basic needs across East Central Iowa. UWECI serves as a connector and investor in hundreds of local nonprofits.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-legal)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-legal)">Suites 403 &amp; 404</div>
+        <h3>Iowa Legal Aid</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 4</div>
+    </div>
+    <div class="dir-mission">Free civil legal assistance to low-income Iowans, addressing housing, family law, public benefits, and other issues that affect basic needs and stability.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-redcross)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-redcross)">Suite 205</div>
+        <h3>American National Red Cross</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Disaster relief, blood donation services, and emergency preparedness education. The Red Cross responds to emergencies 24/7 and provides vital services to military families and disaster survivors.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-asac)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-asac)">Suite 203</div>
+        <h3>Area Substance Abuse Council</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Prevention, education, and treatment services addressing substance use and addiction in Linn County. ASAC offers a full continuum of care from outpatient counseling to residential treatment.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-jl)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-jl)">Suite 202D</div>
+        <h3>Junior League of Cedar Rapids</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Promoting voluntarism, developing women's potential, and improving communities through effective action and civic leadership in Cedar Rapids.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-lwv)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-lwv)">Suite 202E</div>
+        <h3>League of Women Voters</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Encouraging informed and active participation in government. The League advocates for policies that strengthen democracy and provides nonpartisan voter education resources.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-manna)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-manna)">Suite 202F</div>
+        <h3>Manna Outreach and Resource</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Providing food assistance, basic needs resources, and community support to individuals and families facing hardship in the Cedar Rapids area.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-ndl)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-ndl)">Suite 202G</div>
+        <h3>Never Dream Less Foundation</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Empowering youth and young adults through mentorship, leadership development, and expanded access to educational and professional opportunities.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:var(--c-nb)" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:var(--c-nb)">Suite 202H</div>
+        <h3>New Beginnings</h3>
+      </div>
+      <div class="dir-floor-pill">Floor 2</div>
+    </div>
+    <div class="dir-mission">Founded by Nigel and Tonya Adams. Providing pathways to stability and renewal for individuals seeking second chances through community-centered support and programming.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="dir-card" style="border-left-color:#bbb" onclick="toggleDir(this)">
+    <div class="dir-card-top">
+      <div style="flex:1">
+        <div class="dir-suite-tag" style="color:#888">Suite TBD</div>
+        <h3>Abbe Center for Community Mental Health</h3>
+      </div>
+      <div class="dir-floor-pill">TBD</div>
+    </div>
+    <div class="dir-mission">Comprehensive mental health services including therapy, crisis intervention, psychiatric services, and community-based programs throughout Eastern Iowa.</div>
+    <div class="dir-expand-hint">Tap to expand ›</div>
+  </div>
+
+  <div class="spacer"></div>
+</div><!-- end directory panel -->
+
+
+<!-- ══════ LEASING PANEL ══════ -->
+<div id="panel-leasing" class="panel">
+
+  <div class="lease-section">
+    <h3>Available Spaces</h3>
+    <p class="lease-section-sub">All rates are gross — utilities included.</p>
+  </div>
+
+  <div style="padding:0 12px 12px;">
+
+    <div class="lease-card">
+      <div class="lease-card-header">
+        <div>
+          <div class="lease-suite-name">Suite 201</div>
+          <div class="lease-suite-floor">Second Floor</div>
+        </div>
+        <div class="avail-tag">Available</div>
+      </div>
+      <div class="lease-stats">
+        <div class="lease-stat">
+          <div class="lease-stat-label">Usable SF</div>
+          <div class="lease-stat-value">7,606 <span>USF</span></div>
+        </div>
+        <div class="lease-stat">
+          <div class="lease-stat-label">Rentable SF</div>
+          <div class="lease-stat-value">9,925 <span>RSF</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lease-card">
+      <div class="lease-card-header">
+        <div>
+          <div class="lease-suite-name">Suite 203</div>
+          <div class="lease-suite-floor">Second Floor</div>
+        </div>
+        <div class="avail-tag">Available</div>
+      </div>
+      <div class="lease-stats">
+        <div class="lease-stat">
+          <div class="lease-stat-label">Usable SF</div>
+          <div class="lease-stat-value">2,547 <span>USF</span></div>
+        </div>
+        <div class="lease-stat">
+          <div class="lease-stat-label">Rentable SF</div>
+          <div class="lease-stat-value">3,323 <span>RSF</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lease-card">
+      <div class="lease-card-header">
+        <div>
+          <div class="lease-suite-name">Suite 402</div>
+          <div class="lease-suite-floor">Fourth Floor</div>
+        </div>
+        <div class="avail-tag">Available</div>
+      </div>
+      <div class="lease-stats">
+        <div class="lease-stat">
+          <div class="lease-stat-label">Usable SF</div>
+          <div class="lease-stat-value">2,152 <span>USF</span></div>
+        </div>
+        <div class="lease-stat">
+          <div class="lease-stat-label">Rentable SF</div>
+          <div class="lease-stat-value">2,808 <span>RSF</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lease-card">
+      <div class="lease-card-header">
+        <div>
+          <div class="lease-suite-name">Suite 304</div>
+          <div class="lease-suite-floor">Third Floor · Currently occupied by CRUSH of Iowa</div>
+        </div>
+        <div class="negotiable-tag">Negotiable</div>
+      </div>
+      <div class="lease-stats">
+        <div class="lease-stat">
+          <div class="lease-stat-label">Status</div>
+          <div class="lease-stat-value" style="font-size:13px;">Occupied</div>
+        </div>
+        <div class="lease-stat">
+          <div class="lease-stat-label">Availability</div>
+          <div class="lease-stat-value" style="font-size:13px;">Contact us</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lease-card">
+          <div class="lease-suite-floor">Fourth Floor · Currently occupied by UWECI</div>
+        </div>
+        <div class="negotiable-tag">Negotiable</div>
+      </div>
+      <div class="lease-stats">
+        <div class="lease-stat">
+          <div class="lease-stat-label">Usable SF</div>
+          <div class="lease-stat-value">11,680 <span>USF</span></div>
+        </div>
+        <div class="lease-stat">
+          <div class="lease-stat-label">Rentable SF</div>
+          <div class="lease-stat-value">15,241 <span>RSF</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="combine-box">
+    <div class="combine-box-label">Combination Opportunity</div>
+    <div class="combine-box-title">Suites 401 + 402</div>
+    <div class="combine-box-sub">Entire 4th floor footprint — ideal for a large anchor tenant</div>
+    <div class="combine-stats">
+      <div>
+        <div class="combine-stat-label">Usable SF</div>
+        <div class="combine-stat-value">13,832 <span class="combine-stat-unit">USF</span></div>
+      </div>
+      <div>
+        <div class="combine-stat-label">Rentable SF</div>
+        <div class="combine-stat-value">18,048 <span class="combine-stat-unit">RSF</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rate-card">
+    <div class="rate-card-header">
+      <h4>Lease Rate Schedule</h4>
+      <p>Gross rate per RSF/year · Utilities included</p>
+    </div>
+    <div class="rate-row best">
+      <div><span class="rate-term">5 Year</span><span class="rate-best-badge">Best Value</span></div>
+      <div class="rate-value">$11.14 <span>/SF/yr</span></div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-term">4 Year</div>
+      <div class="rate-value">$11.66 <span>/SF/yr</span></div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-term">3 Year</div>
+      <div class="rate-value">$12.17 <span>/SF/yr</span></div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-term">2 Year</div>
+      <div class="rate-value">$12.69 <span>/SF/yr</span></div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-term">1 Year / Month-to-Month</div>
+      <div class="rate-value">$13.20 <span>/SF/yr</span></div>
+    </div>
+    <div class="rate-note">All CAM charges included — property taxes, utilities, insurance, maintenance, elevator, HVAC, security, and more.</div>
+  </div>
+
+  <div class="contact-card">
+    <h4>John Beardsworth</h4>
+    <div class="contact-card-role">Commercial Real Estate Broker</div>
+    <div class="contact-card-company">Skogman Commercial Group</div>
+    <div style="font-size:12px; color:rgba(255,255,255,.4); margin-bottom:4px;">417 1st Avenue SE · Cedar Rapids, Iowa</div>
+  </div>
+
+  <div class="spacer"></div>
+</div><!-- end leasing panel -->
+
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['map','directory','leasing'][i] === name);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+function toggleDir(card) {
+  card.classList.toggle('expanded');
+}
+</script>
+</body>
+</html>
